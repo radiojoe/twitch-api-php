@@ -97,7 +97,7 @@ class EventSubApi extends AbstractResource
             $callback,
             'channel.follow',
             '2',
-            ['broadcaster_user_id' => $twitchId],
+            ['broadcaster_user_id' => $twitchId, 'moderator_user_id' => $twitchId],
         );
     }
 
