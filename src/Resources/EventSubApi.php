@@ -179,7 +179,7 @@ class EventSubApi extends AbstractResource
     /**
      * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types#channelraid
      */
-    public function subscribeToChannelRaid(string $bearer, string $secret, string $callback, string $twitchId): ResponseInterface
+    public function subscribeToChannelRaidsIn(string $bearer, string $secret, string $callback, string $twitchId): ResponseInterface
     {
         return $this->createEventSubSubscription(
             $bearer,
@@ -187,7 +187,22 @@ class EventSubApi extends AbstractResource
             $callback,
             'channel.raid',
             '1',
-            ['broadcaster_user_id' => $twitchId],
+            ['from_broadcaster_user_id' => $twitchId],
+        );
+    }
+
+    /**
+     * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types#channelraid
+     */
+    public function subscribeToChannelRaidsOut(string $bearer, string $secret, string $callback, string $twitchId): ResponseInterface
+    {
+        return $this->createEventSubSubscription(
+            $bearer,
+            $secret,
+            $callback,
+            'channel.raid',
+            '1',
+            ['to_broadcaster_user_id' => $twitchId],
         );
     }
 
@@ -656,7 +671,7 @@ class EventSubApi extends AbstractResource
             $secret,
             $callback,
             sprintf('channel.charity_campaign.%s', $eventType),
-            'beta',
+            '1',
             ['broadcaster_user_id' => $twitchId],
         );
     }
@@ -668,7 +683,7 @@ class EventSubApi extends AbstractResource
             $secret,
             $callback,
             sprintf('channel.shield_mode.%s', $eventType),
-            'beta',
+            '1',
             [
                 'broadcaster_user_id' => $twitchId,
                 'moderator_user_id' => $moderatorId,
