@@ -1,3 +1,7 @@
+# Forked by radiojoe
+
+This is a forked version of https://github.com/nicklaw5/twitch-api-php
+
 # Twitch API PHP Library
 
 ![Packagist Version](https://img.shields.io/packagist/v/nicklaw5/twitch-api-php)
