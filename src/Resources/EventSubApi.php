@@ -187,7 +187,7 @@ class EventSubApi extends AbstractResource
             $callback,
             'channel.raid',
             '1',
-            ['from_broadcaster_user_id' => $twitchId],
+            ['to_broadcaster_user_id' => $twitchId],
         );
     }
 
@@ -202,7 +202,7 @@ class EventSubApi extends AbstractResource
             $callback,
             'channel.raid',
             '1',
-            ['to_broadcaster_user_id' => $twitchId],
+            ['from_broadcaster_user_id' => $twitchId],
         );
     }
 
