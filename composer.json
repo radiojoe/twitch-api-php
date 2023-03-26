@@ -1,5 +1,5 @@
 {
-  "name": "nicklaw5/twitch-api-php",
+  "name": "radiojoe/twitch-api-php",
   "type": "library",
   "description": "A Twitch API client for PHP.",
   "keywords": [
@@ -9,7 +9,7 @@
     "twitch-api",
     "api"
   ],
-  "homepage": "http://github.com/nicklaw5/twitch-api-php",
+  "homepage": "http://github.com/radiojoe/twitch-api-php",
   "license": "MIT",
   "authors": [
     {
