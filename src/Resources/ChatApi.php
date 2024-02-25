@@ -182,6 +182,27 @@ class ChatApi extends AbstractResource
 
     /**
      * @throws GuzzleException
+     * @link https://dev.twitch.tv/docs/api/reference/#send-chat-message
+     */
+    public function sendChatMessage(string $bearer, string $broadcasterId, string $senderId, string $message, string $replyParentMessageId = null): ResponseInterface
+    {
+        $queryParamsMap = $bodyParamsMap = [];
+
+        $queryParamsMap[] = ['key' => 'broadcaster_id', 'value' => $broadcasterId];
+
+        $bodyParamsMap[] = ['key' => 'sender_id', 'value' => $senderId];
+
+        $bodyParamsMap[] = ['key' => 'message', 'value' => $message];
+
+        if ($replyParentMessageId) {
+            $bodyParamsMap[] = ['key' => 'reply_parent_message_id', 'value' => $replyParentMessageId];
+        }
+
+        return $this->postApi('chat/messages', $bearer, $queryParamsMap, $bodyParamsMap);
+    }
+
+    /**
+     * @throws GuzzleException
      * @link https://dev.twitch.tv/docs/api/reference/#send-a-shoutout
      */
     public function sendShoutout(string $bearer, string $fromBroadcasterId, string $toBroadcasterId, string $moderatorId): ResponseInterface
