@@ -121,7 +121,7 @@ class ChatApiSpec extends ObjectBehavior
     function it_should_send_a_message(RequestGenerator $requestGenerator, Request $request, Response $response)
     {
         $requestGenerator->generate('POST', 'chat/messages', 'TEST_TOKEN', [['key' => 'broadcaster_id', 'value' => '123'], ['key' => 'sender_id', 'value' => '456'], ['key' => 'message', 'value' => 'Hello World']], [['key' => 'reply_parent_message_id', 'value' => '123']])->willReturn($request);
-        $this->sendMessage('TEST_TOKEN', '123', '456', 'Hello World', '123')->shouldBe($response);
+        $this->sendChatMessage('TEST_TOKEN', '123', '456', 'Hello World', '123')->shouldBe($response);
     }
 
     function it_should_send_a_shoutout(RequestGenerator $requestGenerator, Request $request, Response $response)
