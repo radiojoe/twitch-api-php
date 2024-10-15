@@ -260,6 +260,38 @@ class EventSubApi extends AbstractResource
     }
 
     /**
+     * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/#channelguest_star_sessionbegin
+     */
+    public function subscribeToGuestStarSessionBegin(string $bearer, string $secret, string $callback, string $twitchId, string $moderatorId): ResponseInterface
+    {
+        return $this->subscribeToGuestStar($bearer, $secret, $callback, $twitchId, $moderatorId, 'session.begin');
+    }
+
+    /**
+     * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/#channelguest_star_sessionend
+     */
+    public function subscribeToGuestStarSessionEnd(string $bearer, string $secret, string $callback, string $twitchId, string $moderatorId): ResponseInterface
+    {
+        return $this->subscribeToGuestStar($bearer, $secret, $callback, $twitchId, $moderatorId, 'session.end');
+    }
+
+    /**
+     * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/#channelguest_star_guestupdate
+     */
+    public function subscribeToGuestStarGuestUpdate(string $bearer, string $secret, string $callback, string $twitchId, string $moderatorId): ResponseInterface
+    {
+        return $this->subscribeToGuestStar($bearer, $secret, $callback, $twitchId, $moderatorId, 'guest.update');
+    }
+
+    /**
+     * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/#channelguest_star_settingsupdate
+     */
+    public function subscribeToGuestStarSettingsUpdate(string $bearer, string $secret, string $callback, string $twitchId, string $moderatorId): ResponseInterface
+    {
+        return $this->subscribeToGuestStar($bearer, $secret, $callback, $twitchId, $moderatorId, 'settings.update');
+    }
+
+    /**
      * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types#channelchannel_points_custom_rewardadd
      */
     public function subscribeToChannelPointsCustomRewardAdd(string $bearer, string $secret, string $callback, string $twitchId): ResponseInterface
@@ -573,6 +605,21 @@ class EventSubApi extends AbstractResource
             sprintf('channel.moderator.%s', $eventType),
             '1',
             ['broadcaster_user_id' => $twitchId],
+        );
+    }
+
+    private function subscribeToGuestStar(string $bearer, string $secret, string $callback, string $twitchId, string $moderatorId, string $eventType): ResponseInterface
+    {
+        return $this->createEventSubSubscription(
+            $bearer,
+            $secret,
+            $callback,
+            sprintf('channel.guest_star.%s', $eventType),
+            'beta',
+            [
+                'broadcaster_user_id' => $twitchId,
+                'moderator_user_id' => $moderatorId,
+            ],
         );
     }
 
