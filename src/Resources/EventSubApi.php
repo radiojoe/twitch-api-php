@@ -194,7 +194,7 @@ class EventSubApi extends AbstractResource
             $callback,
             'channel.raid',
             '1',
-	    ['to_broadcaster_user_id' => $twitchId],
+            ['to_broadcaster_user_id' => $twitchId],
         );
     }
 
@@ -614,7 +614,7 @@ class EventSubApi extends AbstractResource
             $bearer,
             $secret,
             $callback,
-            sprintf('channel.guest_star.%s', $eventType),
+            sprintf('channel.guest_star_%s', $eventType),
             'beta',
             [
                 'broadcaster_user_id' => $twitchId,
